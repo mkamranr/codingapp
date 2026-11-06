@@ -1,0 +1,26 @@
+# CodingApp on the air-gapped server. Managed by ./codingapp.sh (project name "codingapp").
+# Works with Docker Compose v2 ("docker compose") and v1.27+ ("docker-compose").
+#
+# Everything is in this folder: the image is only the runtime (Python + libraries);
+#   ./code  application (read-only)      ./data  database + secret key      ./.env  settings
+# ":z" lets SELinux hosts (RHEL, Rocky, Alma...) use the folders; it is ignored elsewhere.
+
+services:
+  codingapp:
+    image: "codingapp-runtime:${RUNTIME_VERSION:-1}"
+    container_name: codingapp
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "${APP_BIND:-0.0.0.0}:${APP_PORT:-8090}:8090"
+    volumes:
+      - ./data:/data:z
+      - ./code:/code:ro,z
+    extra_hosts:
+      # lets the container reach a vLLM server published on this Docker host
+      - "host.docker.internal:host-gateway"
+    logging:
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "5"
