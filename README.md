@@ -19,6 +19,15 @@ Upload a project, ask questions, get fixes as downloadable files, all on your ow
 [Features](#features) · [How it works](#how-it-works) · [Quick start](#quick-start) ·
 [Documentation](#documentation) · [Development](#local-development)
 
+<br>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/screenshot-dark.png">
+  <img src="docs/assets/screenshot-light.png" alt="CodingApp: a project uploaded, a bug fixed, and the changed files ready to copy or download" width="900">
+</picture>
+
+<sub>A project uploaded as a zip and a bug fixed by the model. Each changed file has Copy / Download buttons, and the project can be downloaded with the fixes applied.</sub>
+
 </div>
 
 ---
